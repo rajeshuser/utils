@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#slider {
+				background-color: red;
+				padding: 50px;
+				height: fit-content;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				gap: 50px;
+			}
+
+			#container {
+				display: flex;
+				width: 50vw;
+				height: 50vh;
+				margin: auto;
+				padding: 50px;
+				background-color: green;
+			}
+
+			#controls {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 50px;
+			}
+
+			.slide {
+				display: block;
+				margin: auto;
+				height: 100%;
+				width: 0%;
+				transition: width 1s ease;
+			}
+
+			.stretch {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="slider">
+			<div id="container"></div>
+			<div id="controls"></div>
+		</div>
+
+		<script>
+			const container = document.getElementById("container");
+			const controls = document.getElementById("controls");
+			const images = ["celeste.png", "prince.png", "pyramid.png"];
+
+			applyStretchSquiz(container, controls, images);
+
+			function applyStretchSquiz(container, controls, images) {
+				images.forEach((src, index) => {
+					const image = document.createElement("img");
+					image.src = src;
+					image.dataset.index = index;
+					image.classList.add("slide");
+					container.append(image);
+				});
+
+				for (let item of ["previous", ...container.children, "next"]) {
+					switch (item) {
+						case "previous":
+							addControl({
+								id: "previous",
+								textContent: "Previous",
+								eventListener: () => changeActiveImage({ previous: true }),
+								controls
+							});
+							break;
+						case "next":
+							addControl({
+								id: "next",
+								textContent: "Next",
+								eventListener: () => changeActiveImage({ next: true }),
+								controls
+							});
+							break;
+						default:
+							addControl({
+								id: item.dataset.index,
+								textContent: +item.dataset.index + 1,
+								eventListener: () =>
+									changeActiveImage({ index: +item.dataset.index }),
+								controls
+							});
+							break;
+					}
+				}
+
+				container.dataset.active = 0;
+				container.firstElementChild.classList.add("stretch");
+
+				for (let child of container.children) {
+					child.addEventListener("transitionstart", (event) => {
+						if (container.dataset.active === child.dataset.index) {
+							// where are previous and next is declared
+							previous.disabled = true;
+							next.disabled = true;
+						}
+					});
+					child.addEventListener("transitionend", (event) => {
+						if (container.dataset.active === child.dataset.index) {
+							previous.disabled = false;
+							next.disabled = false;
+						}
+					});
+				}
+			}
+
+			function changeActiveImage({ index, next, previous }) {
+				const container = document.getElementById("container");
+				const dataset = container.dataset;
+				container.children[dataset.active].classList.remove("stretch");
+				if (typeof index === "number") {
+					dataset.active = index % container.childElementCount;
+				} else if (next) {
+					dataset.active = (+dataset.active + 1) % container.childElementCount;
+				} else if (previous) {
+					const previousIndex =
+						+dataset.active === 0
+							? container.childElementCount - 1
+							: +dataset.active - 1;
+					dataset.active = previousIndex % container.childElementCount;
+				}
+				container.children[dataset.active].classList.add("stretch");
+			}
+
+			function addControl({ id, textContent, eventListener, controls }) {
+				const button = document.createElement("button");
+				button.id = id;
+				button.textContent = textContent;
+				button.addEventListener("click", eventListener);
+				controls.append(button);
+			}
+		</script>
+	</body>
+</html>
