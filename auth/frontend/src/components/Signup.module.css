@@ -1,0 +1,31 @@
+.formWrapper {
+	width: 30%;
+	margin: 50px auto;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+	.form {
+		width: 50%
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.form {
+		width: 80%
+	}
+}
+
+.form>label {
+	text-align: left;
+}
+
+.form>input {
+	padding: 10px
+}
