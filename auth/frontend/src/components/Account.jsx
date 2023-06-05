@@ -9,10 +9,18 @@ export default function Account() {
 		dispatch(signout());
 	};
 
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+			console.log("User signed out.");
+		});
+	}
+
 	return (
 		<div>
 			<h1>Account</h1>
 			<button onClick={handleSignout}>Signout</button>
+			<button onclick="signOut()">Sign out</button>
 		</div>
 	);
 }
