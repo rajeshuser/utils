@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			h1 {
+				color: rgb(10, 180, 50);
+				width: fit-content;
+				padding: 10px;
+			}
+
+			.hover {
+				position: relative;
+				cursor: pointer;
+			}
+
+			.hover::after {
+				content: "";
+				background-color: rgb(190, 200, 230);
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				animation: bedSheet 0.3s linear 0s 1;
+			}
+
+			@keyframes bedSheet {
+				0% {
+					width: 0%;
+				}
+
+				100% {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="heading">Hover</h1>
+
+		<script>
+			const heading = document.getElementById("heading");
+			heading.addEventListener("mouseenter", (event) => {
+				heading.classList.add("hover");
+			});
+			heading.addEventListener("mouseleave", (event) => {
+				heading.classList.remove("hover");
+			});
+		</script>
+	</body>
+</html>
