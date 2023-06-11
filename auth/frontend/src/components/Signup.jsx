@@ -35,11 +35,12 @@ export default function Signup() {
 	};
 
 	return (
-		<div className={`${styles.formWrapper}`}>
+		<div className={styles.formWrapper}>
 			<h1>Signup</h1>
 			<h3>Signup with Google</h3>
 			<Divider text="or" />
-			<form className={`${styles.form}`} onSubmit={handleSignup}>
+			<h3>Signup with Email</h3>
+			<form className={styles.form} onSubmit={handleSignup}>
 				<label htmlFor="email">Email</label>
 				<input
 					type="email"

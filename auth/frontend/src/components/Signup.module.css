@@ -10,14 +10,20 @@
 	width: 100%;
 }
 
+.hintFeatures {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
 @media screen and (max-width: 1000px) {
-	.form {
+	.formWrapper {
 		width: 50%
 	}
 }
 
 @media screen and (max-width: 500px) {
-	.form {
+	.formWrapper {
 		width: 80%
 	}
 }
