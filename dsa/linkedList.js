@@ -13,6 +13,10 @@ class LinkedList {
 		print(this.head);
 		return this.head;
 	}
+
+	reverse() {
+		
+	}
 }
 
 function print(head) {

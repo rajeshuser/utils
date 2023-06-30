@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				background-color: blueviolet;
+				font-family: Geneva, Verdana, sans-serif;
+			}
+
+			#registration {
+				background-color: white;
+				width: 40%;
+				margin: auto;
+				padding: 30px;
+				border-radius: 10px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				gap: 15px;
+				min-width: 300px;
+			}
+
+			@media screen and (max-width: 1000px) {
+				#registration {
+					width: 60%;
+				}
+			}
+
+			@media screen and (max-width: 600px) {
+				#registration {
+					width: 80%;
+				}
+			}
+
+			#registration > h1 {
+				text-align: center;
+				margin-top: 0;
+			}
+
+			@media screen and (max-width: 1000px) {
+				#registration > h1 {
+					font-size: 1.5rem;
+				}
+			}
+
+			#registration .control {
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+			}
+
+			#registration .control input,
+			#registration .control select {
+				padding: 10px;
+				border-radius: 5px;
+				border: 1px solid grey;
+			}
+
+			#registration .wrapper {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			@media screen and (max-width: 600px) {
+				#registration .wrapper {
+					flex-direction: column;
+					align-items: stretch;
+					gap: 15px;
+				}
+			}
+
+			#registration .wrapper .control {
+				flex: 1;
+			}
+
+			#registration .radios input {
+				margin: 0;
+			}
+
+			#registration .radios {
+				display: flex;
+				gap: 15px;
+			}
+
+			#registration .control input[type="submit"] {
+				color: white;
+				border: 10px;
+				background-color: blueviolet;
+				font-size: large;
+			}
+
+			#registration .control input[type="submit"]:hover {
+				cursor: pointer;
+				background-color: rgb(100, 0, 200);
+			}
+		</style>
+	</head>
+	<body>
+		<form id="registration">
+			<h1>Registration Form</h1>
+			<section class="control">
+				<label for="name">Full Name</label>
+				<input id="name" type="text" name="name" placeholder="Enter full name" />
+			</section>
+			<section class="control">
+				<label for="email">Email Address</label>
+				<input id="email" type="email" name="email" placeholder="Enter email address" />
+			</section>
+			<div class="control wrapper">
+				<section class="control">
+					<label for="phone">Phone Number</label>
+					<input id="phone" type="tel" name="phone" placeholder="Enter phone number" />
+				</section>
+				<section class="control">
+					<label for="dob">Birth Date</label>
+					<input id="dob" type="date" name="dob" placeholder="dd-mm-yyyy" />
+				</section>
+			</div>
+			<section class="control">
+				<label>Gender</label>
+				<section class="radios">
+					<section>
+						<input id="male" type="radio" name="gender" value="male" />
+						<label for="male">Male</label>
+					</section>
+					<section>
+						<input id="female" type="radio" name="gender" value="female" />
+						<label for="female">Female</label>
+					</section>
+					<section>
+						<input id="other" type="radio" name="gender" value="other" />
+						<label for="other">Other</label>
+					</section>
+				</section>
+			</section>
+			<section class="control">
+				<label for="address">Address</label>
+				<input id="address" type="text" name="address" placeholder="Enter address" />
+			</section>
+			<div class="control wrapper">
+				<section class="control">
+					<label for="country">Select Country</label>
+					<select name="country">
+						<option value="Iran">Iran</option>
+						<option value="America">America</option>
+						<option value="China">China</option>
+					</select>
+				</section>
+				<section class="control">
+					<label for="zip">ZIP Code</label>
+					<input id="zip" type="number" name="zip" placeholder="Enter zip code" />
+				</section>
+			</div>
+			<section class="control"><input type="submit" value="Submit" /></section>
+		</form>
+	</body>
+</html>
