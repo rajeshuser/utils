@@ -10,24 +10,33 @@ class LinkedList {
 			}
 		}
 		this.head = list[0];
-		print(this.head);
-		return this.head;
+		this.print();
 	}
 
 	reverse() {
-		
+		let previous = null;
+		let current = this.head;
+		while (current) {
+			let next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		this.head = previous;
+		this.print();
+	}
+
+	print() {
+		let string = "";
+		let node = this.head;
+		while (node !== null) {
+			string += node.data + " -> ";
+			node = node.next;
+		}
+		string += null;
+		console.log(string);
 	}
 }
 
-function print(head) {
-	let ll = "";
-	let node = head;
-	while (node !== null) {
-		ll += node.data + " -> ";
-		node = node.next;
-	}
-	ll += null;
-	console.log(ll);
-}
-
-module.exports = { LinkedList, print };
+const linkedList = new LinkedList([1, 2, 3, 4, 5]);
+linkedList.reverse();
