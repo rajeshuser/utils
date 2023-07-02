@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			input {
+				background-color: aquamarine;
+				padding: 10px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="file" accept="image/*" multiple onchange="handleImageUpload(event)" />
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"
+		></script>
+		<script>
+			async function handleImageUpload(event) {
+				const file = event.target.files[0];
+				console.log(file, file.size / 1024);
+				const compressedImage = await imageCompression(file, { maxSizeMB: 100 / 1024 });
+				console.log(compressedImage, compressedImage.size / 1024);
+			}
+		</script>
+	</body>
+</html>
