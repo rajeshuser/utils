@@ -1,7 +1,7 @@
 class Input {
-	constructor(input) {
-		this.input = input.split("\n");
+	constructor(input = "") {
 		this.line = -1;
+		this.input = input.split("\n");
 	}
 
 	next() {

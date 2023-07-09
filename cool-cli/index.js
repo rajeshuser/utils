@@ -30,3 +30,7 @@ if (argument === "random-color") {
 	const blue = Math.floor(Math.random() * 255);
 	console.log(`rgb(${red}, ${green}, ${blue})`);
 }
+
+if (argument === "time") {
+	console.log(Date());
+}
